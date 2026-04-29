@@ -1,9 +1,9 @@
-jobs:
-  on:
-    push:
-      tags:
-        - "*"
+on:
+  push:
+    tags:
+      - "*"
 
+jobs:
   release:
     name: Generate changelog
     runs-on: ubuntu-latest
