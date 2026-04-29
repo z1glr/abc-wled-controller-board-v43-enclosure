@@ -16,18 +16,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: create bottom-stl
-        uses: pkoehlers/openscad-build-action@v1
-        with:
-          input-file: "ABC WLED Controller Board V43 enclosure bottom.scad"
-          output-file: "ABC WLED Controller Board V43 enclosure bottom.stl"
-
-      - name: create top-stl
-        uses: pkoehlers/openscad-build-action@v1
-        with:
-          input-file: "ABC WLED Controller Board V43 enclosure top.scad"
-          output-file: "ABC WLED Controller Board V43 enclosure top.stl"
-
       - name: Generate a changelog
         uses: orhun/git-cliff-action@v4
         id: git-cliff
@@ -41,8 +29,6 @@ jobs:
       - name: Upload the release files
         uses: svenstaro/upload-release-action@v2
         with:
-          file_glob: true
-          file: "*.stl"
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref }}
           body: ${{ steps.git-cliff.outputs.content }}
